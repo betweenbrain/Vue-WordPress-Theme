@@ -31,4 +31,5 @@ module.exports = {
     },
   },
   indexPath: '../index.php',
+  publicPath: '/wp-content/themes/Vue-WordPress-Theme/dist',
 };
