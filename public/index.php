@@ -4,12 +4,19 @@
  *
  * @package WordPress
  */
-// https://github.com/jaketrent/html-webpack-template/blob/86f285d5c790a6c15263f5cc50fd666d51f974fd/index.html
+<% function getFilename(name) {
+	const part = name.split('/').pop();
+	const file = part.split('.')[0];
+
+	return file;
+}
+%>
+<% // https://github.com/jaketrent/html-webpack-template/blob/86f285d5c790a6c15263f5cc50fd666d51f974fd/index.html %>
 <% for (var css in htmlWebpackPlugin.files.css) { %>
-wp_enqueue_style('.<%= htmlWebpackPlugin.files.css[css] %>.', get_template_directory_uri() . '/dist<%= htmlWebpackPlugin.files.css[css] %>');
+wp_enqueue_style('<%= getFilename(htmlWebpackPlugin.files.css[css]) %>', '<%= htmlWebpackPlugin.files.css[css] %>');
 <% } %>
-<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-wp_enqueue_script('.<%= htmlWebpackPlugin.files.chunks[chunk].entry %>.', get_template_directory_uri() . '/dist<%= htmlWebpackPlugin.files.chunks[chunk].entry %>', array(), false, true);
+<% for (var js in htmlWebpackPlugin.files.js) { %>
+wp_enqueue_script('<%= getFilename(htmlWebpackPlugin.files.js[js]) %>', '<%= htmlWebpackPlugin.files.js[js] %>', array(), false, true);
 <% } %>
 ?>
 <!DOCTYPE html>
